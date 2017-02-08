@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'TimeIntervalPicker_Example' do
+  pod 'TimeIntervalPicker', :path => '../'
+
+  target 'TimeIntervalPicker_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

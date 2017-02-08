@@ -1,0 +1,16 @@
+PODS:
+  - TimeIntervalPicker (0.1.0)
+
+DEPENDENCIES:
+  - TimeIntervalPicker (from `../`)
+
+EXTERNAL SOURCES:
+  TimeIntervalPicker:
+    :path: ../
+
+SPEC CHECKSUMS:
+  TimeIntervalPicker: b7387d7ffe3f0a2e19bf50c6febe278506a3a415
+
+PODFILE CHECKSUM: 1d948bd22f4a8b5b497d2986dbdd655b6f28467e
+
+COCOAPODS: 1.1.1

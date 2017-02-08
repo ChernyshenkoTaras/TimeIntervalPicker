@@ -1,0 +1,22 @@
+{
+  "name": "TimeIntervalPicker",
+  "version": "0.1.0",
+  "summary": "A short description of TimeIntervalPicker.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/relevantcompany/TimeIntervalPicker",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "relevantcompany": "t.chernyshenko@relevant.software"
+  },
+  "source": {
+    "git": "https://github.com/relevantcompany/TimeIntervalPicker.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "TimeIntervalPicker/Classes/**/*"
+}

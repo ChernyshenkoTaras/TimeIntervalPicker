@@ -1,0 +1,6 @@
+framework module TimeIntervalPicker {
+  umbrella header "TimeIntervalPicker-umbrella.h"
+
+  export *
+  module * { export * }
+}
