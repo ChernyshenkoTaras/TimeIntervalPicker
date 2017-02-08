@@ -34,7 +34,7 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
         }
     }
     
-    open var titleString: String = "Minutes" {
+    open var titleString: String = "Time Interval" {
         didSet {
             self.titleLabel?.text = self.titleString
         }
@@ -279,7 +279,7 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
     
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
         forComponent component: Int) -> String? {
-        return "\(row)h"
+        return "\(row)"
     }
     
     public func pickerView(_ pickerView: UIPickerView,
