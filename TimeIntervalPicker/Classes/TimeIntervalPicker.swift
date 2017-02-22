@@ -114,6 +114,15 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
             return
         }
         
+        self.clipsToBounds = false
+        let screenSize = UIScreen.main.bounds.size
+        let x: CGFloat = (self.frame.width - screenSize.width) / 2
+        let y: CGFloat = (self.frame.height - screenSize.height) / 2
+        let overlayView = UIView(frame: CGRect(x: x, y: y, width: screenSize.width,
+            height: screenSize.height))
+        overlayView.backgroundColor = UIColor.clear
+        
+        self.addSubview(overlayView)
         let topSeparator = UIView(frame: CGRect.zero)
         let bottomSeparator = UIView(frame: CGRect.zero)
         let bottomMiddleSeparator = UIView(frame: CGRect.zero)
