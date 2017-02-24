@@ -26,11 +26,18 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
     
     open var completion: Completion?
     
-    open var maxHours: Int = 1 {
+    open var maxMinutes: Int = 60 {
         didSet {
             self.hours = 0
             self.minutes = 0
             self.pickerView?.reloadAllComponents()
+        }
+    }
+    
+    private var maxHours: Int {
+        get {
+            let hours = self.maxMinutes / 60
+            return hours < 1 ? 1 : hours
         }
     }
     
@@ -67,8 +74,6 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
     private var closeButton: UIButton?
     
     private var pickerView: UIPickerView?
-    private var hoursTitleLabel: UILabel?
-    private var minutesTitleLabel: UILabel?
     private var containerView: UIView?
     
     public init() {
@@ -283,7 +288,7 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
         self.pickerView?.layer.opacity = 0.5
     }
     
-    open func show() {
+    open func show(at selectedMinute: Int = 0) {
         guard let appDelegate = UIApplication.shared.delegate else {
             assertionFailure()
             return
@@ -293,6 +298,21 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
             return
         }
         
+        if selectedMinute <= self.maxMinutes {
+            let minute = selectedMinute % 60
+            let hour = selectedMinute < 60 ? 0 : selectedMinute / 60
+            
+            self.hours = hour
+            self.minutes = minute
+            self.pickerView?.reloadAllComponents()
+            
+            if hour > 0 {
+                self.pickerView?.selectRow(hour, inComponent: 0, animated: true)
+                self.pickerView?.selectRow(minute, inComponent: 1, animated: true)
+            } else {
+                self.pickerView?.selectRow(minute, inComponent: 0, animated: true)
+            }
+        }
         
         window?.addSubview(self)
         window?.bringSubview(toFront: self)
@@ -325,17 +345,17 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
     
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return self.maxHours > 1 ? 2 : 1
+        return self.maxMinutes % 60 > 0 ? 2 : 1
     }
     
     public func pickerView(_ pickerView: UIPickerView,
         numberOfRowsInComponent component: Int) -> Int {
-        let comp = self.maxHours > 1 ? component : 1
+        let comp = self.maxMinutes % 60 > 0 ? component : 1
         switch Component(rawValue: comp)! {
             case .hours: return self.maxHours + 1
             case .minutes:
-                if self.hours == self.maxHours { return 1 }
-                return self.maxHours > 1 ? 60 : 61
+                if self.hours == self.maxHours { return (self.maxMinutes % 60) + 1}
+                return self.maxMinutes % 60 > 0 ? 60 : self.maxMinutes + 1
         }
     }
     
@@ -343,7 +363,7 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int,
         inComponent component: Int) {
-        let comp = self.maxHours > 1 ? component : 1
+        let comp = self.maxMinutes % 60 > 0 ? component : 1
         switch Component(rawValue: comp)! {
             case .hours: self.hours = row
             case .minutes: self.minutes = row
