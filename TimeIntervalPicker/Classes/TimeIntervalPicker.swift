@@ -300,7 +300,7 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
         
         if selectedMinute <= self.maxMinutes {
             let minute = selectedMinute % 60
-            let hour = selectedMinute < 60 ? 0 : selectedMinute / 60
+            let hour = selectedMinute <= 60 ? 0 : selectedMinute / 60
             
             self.hours = hour
             self.minutes = minute
