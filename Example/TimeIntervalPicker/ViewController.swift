@@ -13,10 +13,11 @@ class ViewController: UIViewController {
     
     @IBAction private func showButtonPressed(button: UIButton) {
         let timePicker = TimeIntervalPicker()
+        timePicker.titleString = "Select time:"
         timePicker.maxMinutes = 180
         timePicker.completion = { (timeInterval) in
             print(timeInterval)
         }
-        timePicker.show(at: 179)
+        timePicker.show(at: 0)
     }
 }
