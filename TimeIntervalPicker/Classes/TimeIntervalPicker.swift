@@ -127,13 +127,9 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
         
         let topSeparator = UIView(frame: CGRect.zero)
         let bottomSeparator = UIView(frame: CGRect.zero)
-        let bottomMiddleSeparator = UIView(frame: CGRect.zero)
-        let topMiddleSeparator = UIView(frame: CGRect.zero)
         
         topSeparator.backgroundColor = self.grayColor
         bottomSeparator.backgroundColor = self.grayColor
-        topMiddleSeparator.backgroundColor = self.grayColor
-        bottomMiddleSeparator.backgroundColor = self.grayColor
         
         self.addSubview(containerView)
         containerView.addSubview(pickerView)
@@ -142,8 +138,6 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
         containerView.addSubview(titleLabel)
         containerView.addSubview(topSeparator)
         containerView.addSubview(bottomSeparator)
-        containerView.addSubview(topMiddleSeparator)
-        containerView.addSubview(bottomMiddleSeparator)
         
         pickerView.translatesAutoresizingMaskIntoConstraints = false
         doneButton.translatesAutoresizingMaskIntoConstraints = false
@@ -151,8 +145,6 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         topSeparator.translatesAutoresizingMaskIntoConstraints = false
         bottomSeparator.translatesAutoresizingMaskIntoConstraints = false
-        topMiddleSeparator.translatesAutoresizingMaskIntoConstraints = false
-        bottomMiddleSeparator.translatesAutoresizingMaskIntoConstraints = false
         
         //buttons
         containerView.addConstraint(NSLayoutConstraint(item: containerView,
@@ -235,32 +227,6 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
             attribute: .bottom, relatedBy: .equal, toItem: pickerView,
             attribute: .bottom, multiplier: 1.0, constant: 0))
         bottomSeparator.addConstraint(NSLayoutConstraint(item: bottomSeparator,
-            attribute: .height, relatedBy: .equal, toItem: nil,
-            attribute: .height, multiplier: 1.0, constant: 0.5))
-        
-        containerView.addConstraint(NSLayoutConstraint(item: topMiddleSeparator,
-            attribute: .centerY, relatedBy: .equal, toItem: containerView,
-            attribute: .centerY, multiplier: 1.0, constant: -15))
-        containerView.addConstraint(NSLayoutConstraint(item: topMiddleSeparator,
-            attribute: .leading, relatedBy: .equal, toItem: containerView,
-            attribute: .leading, multiplier: 1.0, constant: 0))
-        containerView.addConstraint(NSLayoutConstraint(item: topMiddleSeparator,
-            attribute: .trailing, relatedBy: .equal, toItem: containerView,
-            attribute: .trailing, multiplier: 1.0, constant: 0))
-        topMiddleSeparator.addConstraint(NSLayoutConstraint(item: topMiddleSeparator,
-            attribute: .height, relatedBy: .equal, toItem: nil,
-            attribute: .height, multiplier: 1.0, constant: 0.5))
-        
-        containerView.addConstraint(NSLayoutConstraint(item: bottomMiddleSeparator,
-            attribute: .centerY, relatedBy: .equal, toItem: containerView,
-            attribute: .centerY, multiplier: 1.0, constant: 15))
-        containerView.addConstraint(NSLayoutConstraint(item: bottomMiddleSeparator,
-            attribute: .leading, relatedBy: .equal, toItem: containerView,
-            attribute: .leading, multiplier: 1.0, constant: 0))
-        containerView.addConstraint(NSLayoutConstraint(item: bottomMiddleSeparator,
-            attribute: .trailing, relatedBy: .equal, toItem: containerView,
-            attribute: .trailing, multiplier: 1.0, constant: 0))
-        bottomMiddleSeparator.addConstraint(NSLayoutConstraint(item: bottomMiddleSeparator,
             attribute: .height, relatedBy: .equal, toItem: nil,
             attribute: .height, multiplier: 1.0, constant: 0.5))
     }
