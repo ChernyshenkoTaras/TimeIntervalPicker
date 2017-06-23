@@ -1,7 +1,7 @@
 # TimeIntervalPicker
 UIDatePicker-like picker in .countDownTimer mode with range selection support
 
-[![](https://raw.githubusercontent.com/ChernyshenkoTaras/TimeIntervalPicker/blob/master/TimeIntervalPicker/Images/time_interval_picker_example_1.png)](https://raw.githubusercontent.com/ChernyshenkoTaras/TimeIntervalPicker/blob/master/TimeIntervalPicker/Images/time_interval_picker_example_1.png)
+[![](https://raw.githubusercontent.com/ChernyshenkoTaras/TimeIntervalPicker/blob/master/TimeIntervalPicker/Images/time_interval_picker_example_1.png)]
 
 ## Requirements
 
