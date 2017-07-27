@@ -1,5 +1,5 @@
 # TimeIntervalPicker
-UIDatePicker-like picker in .countDownTimer mode with range selection support
+UIDatePicker-like picker what allow you to select time interval similar to .countDownTimer mode but not limited with 24 hours
 
 ![](https://github.com/ChernyshenkoTaras/TimeIntervalPicker/blob/master/TimeIntervalPicker/Images/time_interval_picker_example_1.png?raw=true)
 
