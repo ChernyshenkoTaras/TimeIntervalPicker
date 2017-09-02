@@ -27,7 +27,7 @@ pod 'CTTimeIntervalPicker'
 
 ```swift
 import UIKit
-import TimeIntervalPicker
+import TCTimeIntervalPicker
 
 class ViewController: UIViewController {
     
