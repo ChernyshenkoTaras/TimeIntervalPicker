@@ -17,7 +17,7 @@ You can use [CocoaPods](http://cocoapods.org/) to install `TimeIntervalPicker` b
 ```ruby
 platform :ios, '8.0'
 use_frameworks!
-pod 'TimeIntervalPicker'
+pod 'TimePicker'
 ```
 #### Manually
 1. Download and drop ```TimeIntervalPicker.swift``` in your project.

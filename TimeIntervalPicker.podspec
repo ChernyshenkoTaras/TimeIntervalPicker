@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name             = 'TimeIntervalPicker'
+  s.name             = 'TimePicker'
   s.version          = '0.1.0'
   s.summary          = 'UIDatePicker-like picker in .countDownTimer mode with range selection support'
 
