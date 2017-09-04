@@ -276,7 +276,7 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
                 self.pickerView?.selectRow(hour, inComponent: 0, animated: true)
                 self.pickerView?.selectRow(minute, inComponent: 1, animated: true)
             } else {
-                self.pickerView?.selectRow(minute, inComponent: 0, animated: true)
+                self.pickerView?.selectRow(minute, inComponent: 1, animated: true)
             }
         }
         
