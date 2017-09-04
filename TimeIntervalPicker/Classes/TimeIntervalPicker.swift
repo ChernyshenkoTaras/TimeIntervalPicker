@@ -57,8 +57,11 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
         didSet {
             self.closeButton?.setTitle(self.closeString, for: .normal)
         }
-    }
-    
+	}
+	
+	open var hourSuffix: String?;
+	open var minuteSuffix: String?;
+	
     private var hours: Int = 0 {
         didSet {
             if self.maxHours == self.hours { self.minutes = 0 }
@@ -276,7 +279,7 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
                 self.pickerView?.selectRow(hour, inComponent: 0, animated: true)
                 self.pickerView?.selectRow(minute, inComponent: 1, animated: true)
             } else {
-                self.pickerView?.selectRow(minute, inComponent: 0, animated: true)
+                self.pickerView?.selectRow(minute, inComponent: 1, animated: true)
             }
         }
         
@@ -338,7 +341,23 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
     
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
         forComponent component: Int) -> String? {
-        return "\(row)"
+		let suffixType:String?;
+		
+		switch component {
+		case Component.hours.rawValue:
+			suffixType = hourSuffix
+		case Component.minutes.rawValue:
+			suffixType = minuteSuffix
+		default:
+			suffixType = nil
+		}
+		
+		if let existingSuffix = suffixType {
+			return "\(row) \(existingSuffix)"
+		} else {
+			return "\(row)"
+		}
+		
     }
     
     public func pickerView(_ pickerView: UIPickerView,
