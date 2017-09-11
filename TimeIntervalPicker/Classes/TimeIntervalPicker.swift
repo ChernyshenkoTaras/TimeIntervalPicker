@@ -341,15 +341,13 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
     
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
         forComponent component: Int) -> String? {
-		let suffixType:String?;
+		let isMinuteComponent = numberOfComponents(in: pickerView) == 1 || component > 0
 		
-		switch component {
-		case Component.hours.rawValue:
-			suffixType = hourSuffix
-		case Component.minutes.rawValue:
+		let suffixType:String?;
+		if isMinuteComponent {
 			suffixType = minuteSuffix
-		default:
-			suffixType = nil
+		} else {
+			suffixType = hourSuffix
 		}
 		
 		if let existingSuffix = suffixType {
@@ -357,7 +355,6 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
 		} else {
 			return "\(row)"
 		}
-		
     }
     
     public func pickerView(_ pickerView: UIPickerView,
