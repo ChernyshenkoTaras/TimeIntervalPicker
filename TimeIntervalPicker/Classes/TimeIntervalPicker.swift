@@ -34,12 +34,10 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
         }
     }
     
-    private var maxHours: Int {
-        get {
-            let hours = self.maxMinutes / 60
-            return hours < 1 ? 1 : hours
-        }
-    }
+    private lazy var maxHours: Int = {
+        return self.maxMinutes < 60 ?
+            0 : self.maxMinutes / 60
+    }()
     
     open var titleString: String = "Time Interval" {
         didSet {
@@ -268,8 +266,10 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
         }
         
         if selectedMinute <= self.maxMinutes {
-            let minute = selectedMinute % 60
-            let hour = selectedMinute <= 60 ? 0 : selectedMinute / 60
+            let modul = self.maxMinutes <= 60 ? 61 : 60
+            let minute = selectedMinute % modul
+            let hour = selectedMinute < modul ?
+                0 : selectedMinute / 60
             
             self.hours = hour
             self.minutes = minute
@@ -316,17 +316,17 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
     
     
     public func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return self.maxHours > 1 ? 2 : 1
+        return self.maxHours > 0 ? 2 : 1
     }
     
     public func pickerView(_ pickerView: UIPickerView,
         numberOfRowsInComponent component: Int) -> Int {
-        let comp = self.maxHours > 1 ? component : 1
+        let comp = self.maxHours > 0 ? component : 1
         switch Component(rawValue: comp)! {
             case .hours: return self.maxHours + 1
             case .minutes:
                 if self.hours == self.maxHours { return (self.maxMinutes % 60) + 1}
-                return self.maxHours > 1 ? 60 : self.maxMinutes + 1
+                return self.maxHours > 0 ? 60 : self.maxMinutes + 1
         }
     }
     
@@ -334,7 +334,7 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
     
     public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int,
         inComponent component: Int) {
-        let comp = self.maxHours > 1 ? component : 1
+        let comp = self.maxHours > 0 ? component : 1
         switch Component(rawValue: comp)! {
             case .hours: self.hours = row
             case .minutes: self.minutes = row
@@ -343,7 +343,7 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
     
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
         forComponent component: Int) -> String? {
-        let isMinuteComponent = numberOfComponents(in: pickerView) == 1 || component > 0
+        let isMinuteComponent = pickerView.numberOfComponents == 1 || component > 0
         
         let suffixType:String? = isMinuteComponent ?
             self.minuteSuffix : self.hourSuffix
