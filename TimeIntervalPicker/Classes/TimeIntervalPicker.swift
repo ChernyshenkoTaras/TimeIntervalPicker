@@ -59,8 +59,8 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
         }
 	}
 	
-	open var hourSuffix: String?;
-	open var minuteSuffix: String?;
+	open var hourSuffix: String?
+	open var minuteSuffix: String?
 	
     private var hours: Int = 0 {
         didSet {
@@ -279,7 +279,9 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
                 self.pickerView?.selectRow(hour, inComponent: 0, animated: true)
                 self.pickerView?.selectRow(minute, inComponent: 1, animated: true)
             } else {
-                self.pickerView?.selectRow(minute, inComponent: numberOfComponents(in: pickerView!) == 1 ? 0 : 1, animated: true)
+                self.pickerView?.selectRow(minute, inComponent:
+                    self.pickerView?.numberOfComponents == 1 ?
+                    0 : 1, animated: true)
             }
         }
         
@@ -341,22 +343,18 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
     
     public func pickerView(_ pickerView: UIPickerView, titleForRow row: Int,
         forComponent component: Int) -> String? {
-		let isMinuteComponent = numberOfComponents(in: pickerView) == 1 || component > 0
-		
-		let suffixType:String?;
-		if isMinuteComponent {
-			suffixType = minuteSuffix
-		} else {
-			suffixType = hourSuffix
-		}
-		
-		if let existingSuffix = suffixType {
-			return "\(row) \(existingSuffix)"
-		} else {
-			return "\(row)"
-		}
+        let isMinuteComponent = numberOfComponents(in: pickerView) == 1 || component > 0
+        
+        let suffixType:String? = isMinuteComponent ?
+            self.minuteSuffix : self.hourSuffix
+        
+        if let existingSuffix = suffixType {
+            return "\(row) \(existingSuffix)"
+        } else {
+            return "\(row)"
+        }
     }
-    
+
     public func pickerView(_ pickerView: UIPickerView,
         widthForComponent component: Int) -> CGFloat {
         return 80

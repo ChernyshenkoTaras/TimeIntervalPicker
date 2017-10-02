@@ -15,6 +15,8 @@ class ViewController: UIViewController {
         let timePicker = TimeIntervalPicker()
         timePicker.titleString = "Select time:"
         timePicker.maxMinutes = 180
+        timePicker.minuteSuffix = "m"
+        timePicker.hourSuffix = "h"
         timePicker.completion = { (timeInterval) in
             print(timeInterval)
         }
