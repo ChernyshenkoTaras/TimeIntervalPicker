@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'TCTimeIntervalPicker'
-  s.version          = '0.1.1'
+  s.version          = '0.1.2'
   s.summary          = 'UIDatePicker-like picker in .countDownTimer mode with range selection support'
 
   s.description      = <<-DESC
