@@ -35,7 +35,7 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
     }
     
     private lazy var maxHours: Int = {
-        return self.maxMinutes < 60 ?
+        return self.maxMinutes <= 60 ?
             0 : self.maxMinutes / 60
     }()
     
@@ -325,6 +325,7 @@ open class TimeIntervalPicker: UIView, UIPickerViewDelegate, UIPickerViewDataSou
         switch Component(rawValue: comp)! {
             case .hours: return self.maxHours + 1
             case .minutes:
+                if self.maxMinutes == 60 { return 61 }
                 if self.hours == self.maxHours { return (self.maxMinutes % 60) + 1}
                 return self.maxHours > 0 ? 60 : self.maxMinutes + 1
         }
